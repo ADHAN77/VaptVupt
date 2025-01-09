@@ -8,9 +8,15 @@ export const PageContainer = styled.div`
     height: 100vh;
     width: 100%;
     background: linear-gradient(to top,rgb(0, 245, 192),rgb(0, 4, 255));
-    background-size: cover;margin: 0; 
+    background-size: cover;
+    margin: 0;
     padding: 0;
     overflow: hidden; 
+
+    /* Adicionando responsividade */
+    @media (max-width: 768px) {
+        padding: 10px;
+    }
 `;
 
 export const Logo = styled.img`
@@ -19,6 +25,11 @@ export const Logo = styled.img`
     left: 50%;
     transform: translateX(-50%);
     max-width: 380px;
+    width: 100%; /* Garante que a logo seja redimensionada em telas menores */
+
+    @media (max-width: 768px) {
+        max-width: 200px; /* Ajuste o tamanho da logo em dispositivos móveis */
+    }
 `;
 
 export const LoginContainer = styled.div`
@@ -38,6 +49,13 @@ export const LoginContainer = styled.div`
         text-align: center;
         font-weight: bold;
     }
+
+    /* Ajustando para telas menores */
+    @media (max-width: 768px) {
+        padding: 20px;
+        max-width: 90%; /* Deixa o container mais estreito em dispositivos móveis */
+        margin-top: 40px;
+    }
 `;
 
 export const LoginForm = styled.form`
@@ -55,7 +73,13 @@ export const Input = styled.input`
     outline: none;
 
     &:focus {
-    border-color: #007bff;
+        border-color: #007bff;
+    }
+
+    /* Ajustes para telas menores */
+    @media (max-width: 768px) {
+        padding: 0.5rem;
+        font-size: 0.9rem;
     }
 `;
 
@@ -70,6 +94,12 @@ export const Button = styled.button`
     transition: background-color 0.3s;
 
     &:hover {
-    background: #0056b3;
+        background: #0056b3;
+    }
+
+    /* Ajustes para telas menores */
+    @media (max-width: 768px) {
+        padding: 0.6rem;
+        font-size: 0.9rem;
     }
 `;
