@@ -2,15 +2,21 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     padding: 20px;
+    `;
 
-    h1 {
-        margin-bottom: 10px;
+export const CategoriaH1 = styled.h1`
+    margin-bottom: 10px;
+    text-align: center;
+
+    @media (max-width: 480px) {
         text-align: center;
+        display: flex;
     }
-`;
+`
 
 export const SearchBar = styled.div`
     margin-bottom: 20px;
+    width: 100%;
 
     input {
         width: 100%;
@@ -18,16 +24,20 @@ export const SearchBar = styled.div`
         border: 1px solid #ccc;
         border-radius: 5px;
         font-size: 16px;
-        margin-left: 4px
+        box-sizing: border-box;
+    }
+
+    @media (max-width: 480px) {
+        margin-left: 50px;
     }
 `;
 
 export const ProductGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px; /* Reduzimos o espaço entre os cards */
-    margin-left: 10px;
-    margin-bottom: 30px;
+    gap: 10px;
+    margin: 0 auto 30px;
+    width: 100%;
 
     @media (max-width: 1024px) {
         grid-template-columns: repeat(3, 1fr);
@@ -35,10 +45,12 @@ export const ProductGrid = styled.div`
 
     @media (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
+        width: 90%;
     }
 
     @media (max-width: 480px) {
         grid-template-columns: 1fr;
+        width: 100%;
     }
 `;
 
@@ -50,15 +62,20 @@ export const Card = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%; /* Garante que o card ocupe toda a altura disponível */
+    height: 100%;
+
+    @media (max-width: 480px) {
+        width: 134%; /* Aumenta a largura do card no mobile */
+        margin: 0 auto; /* Centraliza o card horizontalmente */
+    }
 `;
 
 export const Image = styled.img`
     width: 240px;
     height: 240px;
-    object-fit: cover; /* Garante que a imagem seja cortada para preencher a área definida */
+    object-fit: cover;
     border-radius: 10px;
-    margin: 0 auto 15px; /* Centraliza horizontalmente e adiciona espaçamento inferior */
+    margin: 0 auto 15px;
 `;
 
 export const Info = styled.div`
@@ -139,14 +156,14 @@ export const Placeholder = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color:rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
     padding: 20px;
-    height: 300px; /* Aumenta o tamanho do placeholder */
+    height: 300px;
 
     .image {
         background-color: #e0e0e0;
-        height: 250px; /* Ajusta a altura da imagem no placeholder */
+        height: 250px;
         border-radius: 10px;
         margin-bottom: 15px;
     }

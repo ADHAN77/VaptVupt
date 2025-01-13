@@ -12,6 +12,7 @@ import {
     BuyButton,
     CartButton,
     Placeholder,
+    CategoriaH1,
 } from "./styles";
 
 const Products: React.FC = () => {
@@ -145,7 +146,7 @@ const Products: React.FC = () => {
                 {/* Lista de Produtos por Categoria */}
                 {Object.entries(groupedProducts).map(([category, products]) => (
                     <section key={category}>
-                        <h1>{category}</h1>
+                        <CategoriaH1>{category}</CategoriaH1>
                         <ProductGrid>
                             {products.map((product) => (
                                 <Card key={product.id}>

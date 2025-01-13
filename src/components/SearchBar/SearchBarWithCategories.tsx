@@ -7,11 +7,10 @@ interface Props {
 
 const SearchBar: React.FC<Props> = ({ onCategorySelect }) => {
     const categories = [
-        "Smartphones",
+        "Eletrônicos",
         "Roupas",
         "Computadores",
         "Eletrodomésticos",
-        "TVs",
         "Calçados",
         "Bijuterias",
         "Livros",

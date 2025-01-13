@@ -26,8 +26,20 @@ export const HeaderContainer = styled.header`
     }
 `;
 
-// Estilo para o ícone do menu hamburguer
-export const MenuIcon = styled.div`
+// Adicionar um container para os ícones à direita
+export const RightIcons = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Espaço horizontal entre os ícones */
+
+    @media (max-width: 768px) {
+        gap: 10px; /* Reduz o espaço no mobile */
+    }
+`;
+
+// Estilo para o ícone Exit
+export const ExitIcon = styled.div`
+    display: none;
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -40,15 +52,38 @@ export const MenuIcon = styled.div`
     }
 
     &:hover img {
-        transform: scale(1.2); /* Aumenta o tamanho em 20% ao passar o mouse */
+        transform: scale(1.2);
     }
 
-    @media (max-width: 768px) {
-        width: 20px;
-        height: 20px;
+    @media (min-width: 769px) {
+        display: block;
     }
 `;
 
+// Estilo para o ícone do menu hamburguer
+export const MenuIcon = styled.div`
+    display: block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+        transform: scale(1.2);
+    }
+
+    @media (min-width: 769px) {
+        display: none;
+    }
+`;
+
+// Estilo para o logotipo
 export const Logo = styled.img`
     height: 40px;
     object-fit: contain;
@@ -58,7 +93,7 @@ export const Logo = styled.img`
     }
 `;
 
-// Estilo para o ícone do carrinho
+// Ajuste para ícones individuais (se necessário, já está bem configurado)
 export const CartIcon = styled.div`
     width: 24px;
     height: 24px;
@@ -72,11 +107,32 @@ export const CartIcon = styled.div`
     }
 
     &:hover img {
-        transform: scale(1.2); /* Aumenta o tamanho em 20% ao passar o mouse */
+        transform: scale(1.2); /* Aumenta o tamanho ao passar o mouse */
     }
 
     @media (max-width: 768px) {
         width: 20px;
         height: 20px;
+    }
+`;
+
+export const SettingsIcon = styled.div`
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+        transform: scale(1.2);
+    }
+
+    @media (max-width: 768px) {
+        display: none; /* Oculta o ícone no mobile */
     }
 `;
