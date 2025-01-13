@@ -11,6 +11,7 @@ export const CategoriaH1 = styled.h1`
     @media (max-width: 480px) {
         text-align: center;
         display: flex;
+        margin-left: 18px;
     }
 `
 
@@ -28,7 +29,7 @@ export const SearchBar = styled.div`
     }
 
     @media (max-width: 480px) {
-        margin-left: 50px;
+margin-left: 8px;
     }
 `;
 
@@ -65,8 +66,8 @@ export const Card = styled.div`
     height: 100%;
 
     @media (max-width: 480px) {
-        width: 134%; /* Aumenta a largura do card no mobile */
-        margin: 0 auto; /* Centraliza o card horizontalmente */
+        width: 340px; /* Aumenta a largura do card no mobile */
+        margin-left: 17px;
     }
 `;
 
