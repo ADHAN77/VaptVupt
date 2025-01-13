@@ -10,6 +10,8 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     height: 80px;
+    width: 100vw; /* Garante que ocupe 100% da largura da viewport */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
 
     @media (max-width: 1024px) {
         padding: 15px;
@@ -21,6 +23,7 @@ export const Container = styled.div`
         height: 60px;
     }
 `;
+
 
 export const Categories = styled.div`
     display: flex;

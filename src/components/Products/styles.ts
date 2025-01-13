@@ -67,7 +67,6 @@ export const Card = styled.div`
 
     @media (max-width: 480px) {
         width: 340px; /* Aumenta a largura do card no mobile */
-        margin-left: 17px;
     }
 `;
 
