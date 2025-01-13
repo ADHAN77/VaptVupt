@@ -14,6 +14,15 @@ const GlobalStyle = createGlobalStyle`
     background-color: #f4f4f4; /* Ajuste a cor de fundo conforme necessário */
     color: #333; /* Ajuste a cor do texto conforme necessário */
     }
+
+    .inner-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px; /* Define a largura máxima */
+        margin: 0 auto; /* Centraliza horizontalmente */
+    }
 `;
 
 export default GlobalStyle;
