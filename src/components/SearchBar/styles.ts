@@ -7,57 +7,43 @@ export const Container = styled.div`
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    position: relative;
     height: 80px;
-    width: 100vw; /* Garante que ocupe 100% da largura da viewport */
-    box-sizing: border-box; /* Inclui padding e border na largura total */
+    width: 100vw;
+    box-sizing: border-box;
 
-    @media (max-width: 1024px) {
-        padding: 15px;
-        height: 70px;
-    }
-
-    @media (max-width: 768px) {
-        padding: 10px;
-        height: 60px;
+    /* Esconde o SearchBar em telas pequenas */
+    @media (max-width: 819px) {
+        display: none;
     }
 `;
 
-
 export const Categories = styled.div`
     display: flex;
-    flex-wrap: nowrap; /* Impede a quebra de linha */
-    gap: 10px; /* Espaço entre os botões */
-    justify-content: center; /* Centraliza as categorias no desktop */
-    overflow-x: auto; /* Habilita o scroll horizontal se necessário */
+    flex-wrap: nowrap;
+    gap: 10px;
+    justify-content: center;
     padding: 0 10px;
     background-color: transparent;
+    position: relative;
+    z-index: 5;
 
-    /* Ocultar a barra de rolagem */
     &::-webkit-scrollbar {
-        display: none; /* Remove a barra de rolagem no WebKit */
+        display: none;
     }
-    scrollbar-width: none; /* Remove a barra de rolagem no Firefox */
+    scrollbar-width: none;
+    width: 100%;
+    max-width: 100%;
 
-    /* Aumenta a largura no desktop */
-    width: 100%; /* A largura é 100% para desktop */
-    max-width: 100%; /* Garante que não ultrapasse o limite da tela */
-
-    /* No desktop, centralizamos o conteúdo */
     @media (min-width: 1024px) {
         margin-left: auto;
         margin-right: auto;
     }
 
-    /* Para mobile, as categorias começam do lado esquerdo e rolam horizontalmente */
     @media (max-width: 1024px) {
         justify-content: flex-start;
         gap: 8px;
-    }
-
-    @media (max-width: 768px) {
-        gap: 6px;
     }
 `;
 
@@ -88,8 +74,44 @@ export const CategoryButton = styled.button`
         font-size: 12px;
     }
 
-    @media (max-width: 480px) {
-        padding: 8px 8px;
-        font-size: 11px;
+`;
+
+export const CategoryWrapper = styled.div`
+    position: relative; /* Necessário para que a lista de subcategorias seja posicionada corretamente */
+    display: inline-block;
+`;
+
+export const SubcategoryList = styled.ul`
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    z-index: 10;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+    background-color: rgb(0, 4, 255);
+    border: 1px solid rgb(0, 245, 192);
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    width: max-content;
+`;
+
+export const SubcategoryItem = styled.li`
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: rgb(0, 245, 192);
+        color: rgb(0, 4, 255);
+    }
+
+    @media (max-width: 768px) {
+        padding: 4px 8px; /* Reduz o padding no mobile */
+        font-size: 12px; /* Menor tamanho de fonte no mobile */
     }
 `;

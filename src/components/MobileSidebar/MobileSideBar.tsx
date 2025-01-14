@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Container, Categories, CategoryButton, SubcategoryList, SubcategoryItem, CategoryWrapper } from "./styles";
+import React, { useState } from "react";
+import { MenuOverlay, Sidebar, CategoryButton, SubcategoryList, SubcategoryItem, CategoryWrapper, CloseButton, Title } from "./styles";
+import FecharIcon from "../../assets/icons/fechar.png"; // Importe o ícone de fechar
 
 interface Props {
     onCategorySelect: (category: string) => void;
+    isOpen: boolean;  // Agora o estado 'isOpen' será passado como prop
+    toggleSidebar: () => void;  // A função 'toggleSidebar' será passada como prop
 }
 
-const SearchBar: React.FC<Props> = ({ onCategorySelect }) => {
+const MobileSidebar: React.FC<Props> = ({ onCategorySelect, isOpen, toggleSidebar }) => {
     const categories = [
         {
             name: "Eletrônicos",
@@ -42,46 +45,37 @@ const SearchBar: React.FC<Props> = ({ onCategorySelect }) => {
     ];
 
     const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
-    const subcategoryRef = useRef<HTMLUListElement | null>(null); // Referência ajustada
 
     const handleCategoryClick = (category: string) => {
         setExpandedCategory((prev) => (prev === category ? null : category));
     };
 
-    const handleClickOutside = (event: MouseEvent) => {
-        if (
-            subcategoryRef.current &&
-            !subcategoryRef.current.contains(event.target as Node)
-        ) {
-            setExpandedCategory(null);
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
-
     return (
-        <Container>
-            <div className="inner-container">
-                <Categories>
+        <>
+            {/* Menu Overlay */}
+            {isOpen && <MenuOverlay onClick={toggleSidebar} />}
+            
+            {/* Sidebar */}
+            <Sidebar isOpen={isOpen}>
+                {/* Close Button */}
+                <CloseButton onClick={toggleSidebar}>
+                    <img src={FecharIcon} alt="Fechar" /> {/* Ícone de Fechar */}
+                </CloseButton>
+                
+                {/* Title */}
+                <Title>O que está procurando?</Title>
+                
+                {/* Categories */}
+                <div>
                     {categories.map((category) => (
                         <CategoryWrapper key={category.name}>
-                            <CategoryButton
-                                onClick={() => handleCategoryClick(category.name)}
-                            >
+                            <CategoryButton onClick={() => handleCategoryClick(category.name)}>
                                 {category.name}
                             </CategoryButton>
                             {expandedCategory === category.name && (
-                                <SubcategoryList ref={subcategoryRef}>
+                                <SubcategoryList>
                                     {category.subcategories.map((subcategory) => (
-                                        <SubcategoryItem
-                                            key={subcategory}
-                                            onClick={() => onCategorySelect(subcategory)}
-                                        >
+                                        <SubcategoryItem key={subcategory} onClick={() => onCategorySelect(subcategory)}>
                                             {subcategory}
                                         </SubcategoryItem>
                                     ))}
@@ -89,11 +83,10 @@ const SearchBar: React.FC<Props> = ({ onCategorySelect }) => {
                             )}
                         </CategoryWrapper>
                     ))}
-                </Categories>
-            </div>
-        </Container>
+                </div>
+            </Sidebar>
+        </>
     );
-    
 };
 
-export default SearchBar;
+export default MobileSidebar;

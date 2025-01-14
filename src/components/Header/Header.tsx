@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     HeaderContainer,
     MenuIcon,
@@ -12,10 +12,17 @@ import Cart from "../../assets/icons/cart.png";
 import Exit from "../../assets/icons/exit.png";
 import Settings from "../../assets/icons/opcoes.png";
 import logo from "../../assets/VaptVupt-Logo.png";
+import MobileSidebar from "../../components/MobileSidebar/MobileSideBar"; // Importando o MobileSidebar
 
 const Header: React.FC = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar a visibilidade do menu
+
     const handleExit = () => {
         window.location.href = "/"; // Redireciona para a página de login
+    };
+
+    const handleMenuToggle = () => {
+        setIsMenuOpen((prevState) => !prevState); // Alterna a visibilidade do menu
     };
 
     return (
@@ -25,7 +32,7 @@ const Header: React.FC = () => {
                 <ExitIcon onClick={handleExit}>
                     <img src={Exit} alt="Sair" />
                 </ExitIcon>
-                <MenuIcon>
+                <MenuIcon onClick={handleMenuToggle}>
                     <img src={Menu} alt="Menu" />
                 </MenuIcon>
 
@@ -42,6 +49,13 @@ const Header: React.FC = () => {
                     </SettingsIcon>
                 </RightIcons>
             </div>
+
+            {/* Exibe o MobileSidebar quando o menu for clicado */}
+            <MobileSidebar 
+                isOpen={isMenuOpen} 
+                toggleSidebar={handleMenuToggle} 
+                onCategorySelect={(category) => console.log(category)} // Ação ao selecionar categoria
+            />
         </HeaderContainer>
     );
 };

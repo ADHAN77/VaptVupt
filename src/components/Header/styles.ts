@@ -132,7 +132,8 @@ export const SettingsIcon = styled.div`
         transform: scale(1.2);
     }
 
+    /* Mostrar o ícone também no mobile */
     @media (max-width: 768px) {
-        display: none; /* Oculta o ícone no mobile */
+        display: block; /* Altere de 'none' para 'block' */
     }
 `;
