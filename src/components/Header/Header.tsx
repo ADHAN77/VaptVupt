@@ -12,17 +12,23 @@ import Cart from "../../assets/icons/cart.png";
 import Exit from "../../assets/icons/exit.png";
 import Settings from "../../assets/icons/opcoes.png";
 import logo from "../../assets/VaptVupt-Logo.png";
-import MobileSidebar from "../../components/MobileSidebar/MobileSideBar"; // Importando o MobileSidebar
+import MobileSidebar from "../../components/MobileSidebar/MobileSideBar";
+import OptionsSidebar from "../../components/OptionsSideBar/OptionsSideBar"; // Importando o novo componente
 
 const Header: React.FC = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar a visibilidade do menu
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para o menu de categorias
+    const [isOptionsOpen, setIsOptionsOpen] = useState(false); // Estado para o menu de opções
 
     const handleExit = () => {
         window.location.href = "/"; // Redireciona para a página de login
     };
 
     const handleMenuToggle = () => {
-        setIsMenuOpen((prevState) => !prevState); // Alterna a visibilidade do menu
+        setIsMenuOpen((prevState) => !prevState);
+    };
+
+    const handleOptionsToggle = () => {
+        setIsOptionsOpen((prevState) => !prevState);
     };
 
     return (
@@ -44,18 +50,19 @@ const Header: React.FC = () => {
                     <CartIcon>
                         <img src={Cart} alt="Carrinho" />
                     </CartIcon>
-                    <SettingsIcon>
+                    <SettingsIcon onClick={handleOptionsToggle}>
                         <img src={Settings} alt="Configurações" />
                     </SettingsIcon>
                 </RightIcons>
             </div>
 
-            {/* Exibe o MobileSidebar quando o menu for clicado */}
-            <MobileSidebar 
-                isOpen={isMenuOpen} 
-                toggleSidebar={handleMenuToggle} 
+            {/* Sidebars */}
+            <MobileSidebar
+                isOpen={isMenuOpen}
+                toggleSidebar={handleMenuToggle}
                 onCategorySelect={(category) => console.log(category)} // Ação ao selecionar categoria
             />
+            <OptionsSidebar isOpen={isOptionsOpen} toggleSidebar={handleOptionsToggle} />
         </HeaderContainer>
     );
 };

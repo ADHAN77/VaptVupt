@@ -39,18 +39,37 @@ export const Title = styled.h2`
     margin-bottom: 20px;
 `;
 
+export const IconWrapper = styled.div`
+    width: 24px;
+    height: 24px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+`;
+
 // Categoria (texto, não botão)
 export const CategoryButton = styled.div`
+    display: flex; /* Alinha ícone e texto horizontalmente */
+    align-items: center; /* Alinha verticalmente no centro */
     color: white;
     font-size: 16px;
     margin: 10px 0;
     cursor: pointer;
     transition: color 0.3s;
-    
+
     &:hover {
         color: rgb(0, 245, 192);
     }
+
+    /* Espaço entre ícone e texto */
+    ${IconWrapper} {
+        margin-right: 10px;
+    }
 `;
+
 
 // Lista de Subcategorias
 export const SubcategoryList = styled.ul`
