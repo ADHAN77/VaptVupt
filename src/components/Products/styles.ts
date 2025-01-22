@@ -116,12 +116,18 @@ export const BuyButton = styled.button`
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transform: all 1s esase;
+    transition-duration: .2s;
 
     &:hover {
+        transform: translateY(-5px);
         background-color: rgb(0, 245, 192);
         color: rgb(0, 4, 255);
         border: 1px solid rgb(0, 4, 255);
+    }
+
+    &:active {
+        transform: translateY(2px);
     }
 `;
 
@@ -134,11 +140,17 @@ export const CartButton = styled.button`
     border: 1px solid rgb(0, 245, 192);
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transform: all 1s esase;
+    transition-duration: .2s;
 
     &:hover {
         background-color: rgb(0, 245, 192);
         border: 1px solid rgb(0, 4, 255);
+        transform: translateY(-5px);
+    }
+
+    &:active {
+        transform: translateY(2px);
     }
 
     img {

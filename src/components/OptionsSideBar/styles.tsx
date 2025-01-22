@@ -66,11 +66,37 @@ export const OptionItem = styled.div`
     cursor: pointer;
     font-size: 16px;
     color: white;
-    transition: background 0.2s;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    overflow: hidden;
 
-    &:hover {
+    &::before {
+        content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 90px;
+    height: 15px;
+    border-radius: inherit;
+    scale: 0;
+    z-index: -1;
+    background-color: rgb(0, 245, 192);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    }
+
+    &:hover::before {
+        scale: 3;
         background-color: rgb(0, 245, 192);
         color: rgb(0, 4, 255);
+    }
+
+    &:hover {
+        color: #212121;
+        scale: 1.1;
+    }
+
+    &:active {
+        scale: 1;
     }
 `;
 

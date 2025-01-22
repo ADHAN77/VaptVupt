@@ -27,15 +27,15 @@ export const Sidebar = styled.div<{ isOpen: boolean }>`
 
     /* Responsividade para a sidebar */
     @media (max-width: 768px) {
-        width: 100%;
+        width: 250px;
     }
 `;
 
 // Título
 export const Title = styled.h2`
     color: white;
-    font-size: 30px;
-    margin-top: 20px;
+    font-size: 18px;
+    margin-top: 50px;
     margin-bottom: 20px;
 `;
 
@@ -86,7 +86,7 @@ export const SubcategoryItem = styled.li`
     color: white;
     padding: 5px 10px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.3s;
 
     &:hover {
         background-color: rgb(0, 245, 192);
@@ -110,7 +110,8 @@ export const CloseButton = styled.button`
     cursor: pointer;
     
     img {
-        width: 30px;  // Ajuste o tamanho da imagem conforme necessário
-        height: 30px;
+        width: 24px;
+        height: 24px;
+        transition: transform 0.2s ease-in-out;
     }
 `;

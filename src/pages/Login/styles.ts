@@ -7,8 +7,7 @@ export const PageContainer = styled.div`
     align-items: center;
     height: 100vh;
     width: 100%;
-    background: linear-gradient(to top,rgb(0, 245, 192),rgb(0, 4, 255));
-    background-size: cover;
+    background-color: rgb(0, 4, 255);
     margin: 0;
     padding: 0;
     overflow: hidden; 
@@ -84,17 +83,26 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-    padding: 0.75rem;
-    font-size: 1rem;
-    color: #fff;
-    background: #007bff;
-    border: none;
-    border-radius: 4px;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid rgb(0, 245, 192);
+    color: white;
+    background-color: rgb(0, 4, 255);
     cursor: pointer;
-    transition: background-color 0.3s;
+    border-radius: 10px;
+    transform: all 1s esase;
+    transition-duration: .2s;
 
     &:hover {
-        background: #0056b3;
+        transform: translateY(-5px);
+        background-color: rgb(0, 245, 192);
+        color: rgb(0, 4, 255);
+        border: 1px solid rgb(0, 4, 255)
+    }
+
+    &:active {
+        transform: translateY(2px);
     }
 
     /* Ajustes para telas menores */
