@@ -26,10 +26,21 @@ import {
     CartButton,
     Placeholder,
     CategoriaH1,
+    Modal,
+    ModalContent,
+    QuantityInput,
+    SizeSelect,
+    ModalOverlay,
+    OptionsContainer,
+    OptionWrapper,
 } from "./styles";
 
 const Products: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
+    const [quantity, setQuantity] = useState(1);
+    const [size, setSize] = useState("P");
 
     const products = [
         {
@@ -133,8 +144,7 @@ const Products: React.FC = () => {
     const filteredProducts = products.filter((product) =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
-    // Agrupar produtos por categoria
+    
     const groupedProducts = filteredProducts.reduce((acc, product) => {
         if (!acc[product.category]) {
             acc[product.category] = [];
@@ -142,7 +152,19 @@ const Products: React.FC = () => {
         acc[product.category].push(product);
         return acc;
     }, {} as Record<string, typeof products>);
-
+    
+    // Modificar o handleCardClick
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleCardClick = (product: any) => {
+        setSelectedProduct(product);
+    };
+    
+    const handleOverlayClick = (e: React.MouseEvent) => {
+        if (e.target === e.currentTarget) {
+            setSelectedProduct(null); // Fecha o modal ao clicar fora
+        }
+    };
+    
     return (
         <div className="inner-container">
             <Container>
@@ -155,44 +177,87 @@ const Products: React.FC = () => {
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </SearchBar>
-
+    
                 {/* Lista de Produtos por Categoria */}
                 {Object.entries(groupedProducts).map(([category, products]) => (
                     <section key={category}>
                         <CategoriaH1>{category}</CategoriaH1>
                         <ProductGrid>
                             {products.map((product) => (
-                                <Card key={product.id}>
-                                    <Image src={product.image} alt={product.name} />
-                                    <Info>
-                                        <h3>{product.name}</h3>
-                                        <p>{product.price}</p>
-                                        <Description>{product.description}</Description>
-                                        <Buttons>
-                                            <BuyButton>Comprar</BuyButton>
-                                            <CartButton>
-                                                <img
-                                                    src={cartIcon}
-                                                    alt="Carrinho"
-                                                    style={{ width: "20px", height: "20px" }}
-                                                />
-                                            </CartButton>
-                                        </Buttons>
-                                    </Info>
-                                </Card>
+                            <Card key={product.id} onClick={() => handleCardClick(product)}>
+                                <Image src={product.image} alt={product.name} />
+                                <Info>
+                                    <h3>{product.name}</h3>
+                                    <p>{product.price}</p>
+                                    <Description>{product.description}</Description>
+                                    <Buttons>
+                                        <BuyButton onClick={(e) => e.stopPropagation()}>Comprar</BuyButton>
+                                        <CartButton onClick={(e) => e.stopPropagation()}>
+                                            <img
+                                                src={cartIcon}
+                                                alt="Carrinho"
+                                                style={{ width: "20px", height: "20px" }}
+                                            />
+                                        </CartButton>
+                                    </Buttons>
+                                </Info>
+                            </Card>
                             ))}
                         </ProductGrid>
                     </section>
                 ))}
+    
                 {/* Placeholder para nenhum produto encontrado */}
                 {filteredProducts.length === 0 && (
                     <Placeholder>
                         <p>Nenhum produto encontrado.</p>
                     </Placeholder>
                 )}
+                    
+                {/* Modal de Detalhes do Produto */}
+                {selectedProduct && (
+                    <ModalOverlay onClick={handleOverlayClick}>
+                        <Modal>
+                            <ModalContent>
+                                <h2>{selectedProduct.name}</h2>
+                                <Image src={selectedProduct.image} alt={selectedProduct.name} />
+                                <p><strong>Descrição:</strong> {selectedProduct.description}</p>
+                                <p><strong>Preço:</strong> {selectedProduct.price}</p>
+
+                                {/* Container para tamanho e quantidade ficarem lado a lado */}
+                                <OptionsContainer>
+                                    {selectedProduct.category === "Roupas" && (
+                                        <OptionWrapper>
+                                            <label htmlFor="size">Tamanho:</label>
+                                            <SizeSelect onChange={(e) => setSize(e.target.value)} value={size}>
+                                                <option value="P">P</option>
+                                                <option value="M">M</option>
+                                                <option value="G">G</option>
+                                                <option value="GG">GG</option>
+                                            </SizeSelect>
+                                        </OptionWrapper>
+                                    )}
+
+                                    <OptionWrapper>
+                                        <label htmlFor="quantity">Quantidade:</label>
+                                        <QuantityInput
+                                            type="number"
+                                            id="quantity"
+                                            value={quantity}
+                                            onChange={(e) => setQuantity(Number(e.target.value))}
+                                            min="1"
+                                        />
+                                    </OptionWrapper>
+                                </OptionsContainer>
+
+                                <BuyButton>Comprar</BuyButton>
+                            </ModalContent>
+                        </Modal>
+                    </ModalOverlay>
+                )}
             </Container>
         </div>
     );
-};
+}
 
 export default Products;

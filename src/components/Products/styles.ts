@@ -195,3 +195,84 @@ export const Placeholder = styled.div`
         border-radius: 5px;
     }
 `;
+
+// Estilos do Modal
+export const ModalOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+`;
+
+export const Modal = styled.div`
+    background-color: white;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+`;
+
+
+export const ModalContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+`;
+
+export const ModalHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+`;
+
+export const CloseButton = styled.button`
+    background-color: rgb(0, 4, 255);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+`;
+
+export const QuantityInput = styled.input`
+    width: 60px;
+    padding: 6px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+`
+
+export const SizeSelect = styled.select`
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+`;
+
+export const OptionsContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+    margin-top: 10px;
+`;
+
+export const OptionWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
