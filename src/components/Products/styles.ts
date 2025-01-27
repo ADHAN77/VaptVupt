@@ -65,11 +65,33 @@ export const Card = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        transform: translateY(-3px);
+    }
 
     @media (max-width: 480px) {
-        width: 340px; /* Aumenta a largura do card no mobile */
+        width: 340px;
         margin-left: 5px;
     }
+`;
+
+export const Title = styled.h3`
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    height: 50px; /* Altura fixa para manter os títulos alinhados */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Limita a 2 linhas */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
 `;
 
 export const Image = styled.img`
@@ -81,7 +103,12 @@ export const Image = styled.img`
 `;
 
 export const Info = styled.div`
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
 
     h3 {
         margin: 0 0 10px;
@@ -96,9 +123,14 @@ export const Info = styled.div`
 `;
 
 export const Description = styled.p`
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 15px;
+    font-size: 14px;
+    text-align: center;
+    height: 40px; /* Altura fixa para alinhar as descrições */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita a 2 linhas */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
 `;
 
 export const Buttons = styled.div`
@@ -223,13 +255,20 @@ export const Modal = styled.div`
     position: relative;
 `;
 
-
 export const ModalContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     width: 100%;
+
+    h2 {
+        margin-bottom: 5px;
+    }
+
+    p {
+        margin-bottom: 5px;
+    }
 `;
 
 export const ModalHeader = styled.div`
@@ -237,15 +276,6 @@ export const ModalHeader = styled.div`
     justify-content: space-between;
     width: 100%;
     margin-bottom: 20px;
-`;
-
-export const CloseButton = styled.button`
-    background-color: rgb(0, 4, 255);
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
 `;
 
 export const QuantityInput = styled.input`

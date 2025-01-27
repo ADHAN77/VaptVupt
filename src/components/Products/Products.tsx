@@ -33,6 +33,7 @@ import {
     ModalOverlay,
     OptionsContainer,
     OptionWrapper,
+    Title,
 } from "./styles";
 
 const Products: React.FC = () => {
@@ -164,6 +165,11 @@ const Products: React.FC = () => {
             setSelectedProduct(null); // Fecha o modal ao clicar fora
         }
     };
+
+    const truncateText = (text: string, wordLimit: number) => {
+        const words = text.split(" ");
+        return words.length > wordLimit ? words.slice(0, wordLimit).join(" ") + "..." : text;
+    };
     
     return (
         <div className="inner-container">
@@ -187,9 +193,9 @@ const Products: React.FC = () => {
                             <Card key={product.id} onClick={() => handleCardClick(product)}>
                                 <Image src={product.image} alt={product.name} />
                                 <Info>
-                                    <h3>{product.name}</h3>
+                                    <Title>{truncateText(product.name, 5)}</Title> {/* Limita a 5 palavras */}
                                     <p>{product.price}</p>
-                                    <Description>{product.description}</Description>
+                                    <Description>{truncateText(product.description, 10)}</Description> {/* Limita a 10 palavras */}
                                     <Buttons>
                                         <BuyButton onClick={(e) => e.stopPropagation()}>Comprar</BuyButton>
                                         <CartButton onClick={(e) => e.stopPropagation()}>
