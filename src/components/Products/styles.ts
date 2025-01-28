@@ -271,13 +271,6 @@ export const ModalContent = styled.div`
     }
 `;
 
-export const ModalHeader = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 20px;
-`;
-
 export const QuantityInput = styled.input`
     width: 60px;
     padding: 6px;
@@ -305,4 +298,27 @@ export const OptionWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+`;
+
+export const StoreHeader = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    justify-content: flex-start; /* Alinha tudo à esquerda */
+`;
+
+export const StoreLogo = styled.img`
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #e0e0e0; /* Cor de fundo para o placeholder */
+`;
+
+export const StoreName = styled.h3`
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
 `;

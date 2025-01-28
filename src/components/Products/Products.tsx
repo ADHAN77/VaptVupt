@@ -34,6 +34,9 @@ import {
     OptionsContainer,
     OptionWrapper,
     Title,
+    StoreHeader,
+    StoreName,
+    StoreLogo,
 } from "./styles";
 
 const Products: React.FC = () => {
@@ -224,13 +227,26 @@ const Products: React.FC = () => {
                 {selectedProduct && (
                     <ModalOverlay onClick={handleOverlayClick}>
                         <Modal>
+                            {/* Cabeçalho com logo e nome da loja */}
+                            <StoreHeader>
+                                <StoreLogo  
+                                    src={selectedProduct.storeLogo || "https://via.placeholder.com/50"}
+                                    alt={selectedProduct.storeName || "Nome da Loja"} 
+                                />
+                                <StoreName>{selectedProduct.storeName || "Nome da Loja"}</StoreName>
+                            </StoreHeader>
+
                             <ModalContent>
-                                <h2>{selectedProduct.name}</h2>
+                                {/* Imagem do Produto */}
                                 <Image src={selectedProduct.image} alt={selectedProduct.name} />
+
+                                {/* Título do Produto abaixo da imagem */}
+                                <h2>{selectedProduct.name}</h2>
+
                                 <p><strong>Descrição:</strong> {selectedProduct.description}</p>
                                 <p><strong>Preço:</strong> {selectedProduct.price}</p>
 
-                                {/* Container para tamanho e quantidade ficarem lado a lado */}
+                                {/* Opções de tamanho e quantidade */}
                                 <OptionsContainer>
                                     {selectedProduct.category === "Roupas" && (
                                         <OptionWrapper>
