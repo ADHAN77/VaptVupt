@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import PerfilPage from "./pages/PerfilPage/PerfilPage";
 import LojaPage from "./pages/LojaPage/LojaPage";
+import Vitrine from "./pages/Vitrine/Vitrine";
 // Import outras páginas aqui quando criá-las
 
 const AppRoutes: React.FC = () => {
@@ -14,6 +15,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/perfil" element={<PerfilPage />} />
             <Route path="/minha-loja" element={<LojaPage />} />
+            <Route path="/vitrine" element={<Vitrine />} />
         </Routes>
         </Router>
     );

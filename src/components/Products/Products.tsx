@@ -38,6 +38,7 @@ import {
     StoreName,
     StoreLogo,
 } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 const Products: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -173,6 +174,13 @@ const Products: React.FC = () => {
         const words = text.split(" ");
         return words.length > wordLimit ? words.slice(0, wordLimit).join(" ") + "..." : text;
     };
+
+
+const navigate = useNavigate();
+
+const handleStoreClick = () => {
+    navigate("/vitrine");
+};
     
     return (
         <div className="inner-container">
@@ -228,13 +236,14 @@ const Products: React.FC = () => {
                     <ModalOverlay onClick={handleOverlayClick}>
                         <Modal>
                             {/* Cabeçalho com logo e nome da loja */}
-                            <StoreHeader>
-                                <StoreLogo  
-                                    src={selectedProduct.storeLogo || "https://via.placeholder.com/50"}
-                                    alt={selectedProduct.storeName || "Nome da Loja"} 
-                                />
-                                <StoreName>{selectedProduct.storeName || "Nome da Loja"}</StoreName>
-                            </StoreHeader>
+                                <StoreHeader>
+                                    <StoreLogo  
+                                        src={selectedProduct.storeLogo || "https://via.placeholder.com/50"}
+                                        alt={selectedProduct.storeName || "Nome da Loja"} 
+                                        onClick={handleStoreClick}
+                                        />
+                                    <StoreName>{selectedProduct.storeName || "Nome da Loja"}</StoreName>
+                                </StoreHeader>
 
                             <ModalContent>
                                 {/* Imagem do Produto */}

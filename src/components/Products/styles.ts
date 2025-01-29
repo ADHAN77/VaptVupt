@@ -314,7 +314,8 @@ export const StoreLogo = styled.img`
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    background-color: #e0e0e0; /* Cor de fundo para o placeholder */
+    background-color:rgb(224, 224, 224);
+    cursor: pointer;
 `;
 
 export const StoreName = styled.h3`
