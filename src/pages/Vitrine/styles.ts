@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 90%;
+    width: 100%;
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os elementos horizontalmente */
 `;
 
 export const StoreHeader = styled.div`
@@ -14,6 +17,7 @@ export const StoreHeader = styled.div`
     margin-bottom: 20px;
     border-bottom: 2px solid #ddd;
     padding-bottom: 15px;
+    justify-content: center; /* Garante que a logo e as informações fiquem centralizadas */
 `;
 
 export const StoreLogo = styled.img`
@@ -45,6 +49,9 @@ export const ProductGrid = styled.div`
     gap: 10px;
     margin: 0 auto 30px;
     width: 100%;
+    
+    /* Centraliza o conteúdo da grid */
+    justify-items: center; 
 
     @media (max-width: 1024px) {
         grid-template-columns: repeat(3, 1fr);
@@ -52,7 +59,6 @@ export const ProductGrid = styled.div`
 
     @media (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
-        width: 90%;
     }
 
     @media (max-width: 480px) {
@@ -72,6 +78,7 @@ export const Card = styled.div`
     height: 100%;
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+    width: 100%; /* Certifique-se de que o card se ajuste ao tamanho do container */
 
     &:hover {
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
@@ -79,8 +86,7 @@ export const Card = styled.div`
     }
 
     @media (max-width: 480px) {
-        width: 340px;
-        margin-left: 5px;
+        width: 100%; /* Ajuste para garantir que o card ocupe toda a largura disponível */
     }
 `;
 
@@ -93,12 +99,7 @@ export const Image = styled.img`
 
 export const Info = styled.div`
     margin-top: 10px;
-
-    p {
-        font-size: 16px;
-        font-weight: bold;
-        margin-top: 5px;
-    }
+    text-align: center; /* Centraliza o conteúdo dentro do card */
 `;
 
 export const Title = styled.h3`
@@ -123,6 +124,7 @@ export const Description = styled.p`
     text-overflow: ellipsis; /* Adiciona "..." ao final da segunda linha */
     width: 100%;
 `;
+
 
 export const Buttons = styled.div`
     display: flex;
@@ -185,8 +187,6 @@ export const CategoriaH2 = styled.h2`
     text-align: center;
 
     @media (max-width: 480px) {
-        text-align: center;
-        display: flex;
-        margin-left: 18px;
+        margin-left: 0; /* Ajuste o alinhamento para o celular */
     }
-`
+`;
