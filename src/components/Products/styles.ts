@@ -29,30 +29,30 @@ export const SearchBar = styled.div`
     }
 
     @media (max-width: 480px) {
-        margin-left: 5px;
+        margin-left: 11px;
         width: 340px;
+        width: 95%;
     }
 `;
 
 export const ProductGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
+    justify-content: center; /* Centraliza os itens na tela */
     margin: 0 auto 30px;
     width: 100%;
 
     @media (max-width: 1024px) {
-        grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
     }
 
     @media (max-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
-        width: 90%;
+        justify-content: center;
     }
 
     @media (max-width: 480px) {
-        grid-template-columns: 1fr;
-        width: 100%;
+        justify-content: center;
     }
 `;
 
@@ -67,6 +67,9 @@ export const Card = styled.div`
     height: 100%;
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+    width: 100%;
+    max-width: 400px;
+    min-width: 95%; /* Faz o card ocupar praticamente toda a tela */
 
     &:hover {
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
@@ -74,10 +77,10 @@ export const Card = styled.div`
     }
 
     @media (max-width: 480px) {
-        width: 340px;
-        margin-left: 5px;
+        width: 95%; /* No celular, os cards vão ocupar quase toda a tela */
     }
 `;
+
 
 export const Title = styled.h3`
     font-size: 18px;

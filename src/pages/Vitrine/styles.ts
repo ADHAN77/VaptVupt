@@ -8,6 +8,11 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center; /* Centraliza os elementos horizontalmente */
+    
+    @media (max-width: 480px) {
+        background-color: rgb(0, 4, 255);
+        color: #fff;
+    }
 `;
 
 export const StoreHeader = styled.div`
@@ -25,6 +30,14 @@ export const StoreLogo = styled.img`
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
+    background-color: #ddd;
+
+    @media (max-width: 480px) {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-bottom: 110px;
+    }
 `;
 
 export const StoreInfo = styled.div`
@@ -39,7 +52,10 @@ export const StoreInfo = styled.div`
     p {
         margin: 5px 0;
         font-size: 14px;
-        color: #555;
+
+        @media (max-width: 480px) {
+            color: #fff;
+        }
     }
 `;
 
@@ -62,23 +78,23 @@ export const ProductGrid = styled.div`
     }
 
     @media (max-width: 480px) {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr); /* Agora exibe 2 cards por linha */
         width: 100%;
     }
 `;
 
 export const Card = styled.div`
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px; /* Reduz um pouco o padding para diminuir o tamanho do card */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: auto; /* Deixa a altura do card mais dinâmica */
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
-    width: 100%; /* Certifique-se de que o card se ajuste ao tamanho do container */
+    width: 100%;
 
     &:hover {
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
@@ -86,14 +102,14 @@ export const Card = styled.div`
     }
 
     @media (max-width: 480px) {
-        width: 100%; /* Ajuste para garantir que o card ocupe toda a largura disponível */
+        width: 100%;
     }
 `;
 
 export const Image = styled.img`
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    max-height: 180px; /* Reduz um pouco a altura para evitar que o card fique muito comprido */
+    object-fit: contain; /* Garante que a imagem inteira seja visível dentro do espaço */
     border-radius: 10px;
 `;
 
@@ -106,25 +122,25 @@ export const Title = styled.h3`
     font-size: 18px;
     font-weight: bold;
     color: #333;
-    white-space: nowrap; /* Impede a quebra de linha */
-    overflow: hidden; /* Esconde o texto que ultrapassa o container */
-    text-overflow: ellipsis; /* Adiciona "..." quando o texto for cortado */
-    width: 100%; /* Garante que o efeito funcione dentro do container */
+    width: 100%;
+    max-height: 48px; /* Altura para garantir o corte */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 `;
 
 export const Description = styled.p`
     font-size: 14px;
     color: #666;
     margin-top: 5px;
-    height: 40px;
+    width: 100%;
+    max-height: 40px; /* Altura fixa para impedir overflow */
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* Limita a 2 linhas */
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    text-overflow: ellipsis; /* Adiciona "..." ao final da segunda linha */
-    width: 100%;
 `;
-
 
 export const Buttons = styled.div`
     display: flex;
