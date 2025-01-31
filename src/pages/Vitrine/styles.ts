@@ -86,23 +86,28 @@ export const ProductGrid = styled.div`
 export const Card = styled.div`
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
-    padding: 15px; /* Reduz um pouco o padding para diminuir o tamanho do card */
+    padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: auto; /* Deixa a altura do card mais dinâmica */
+    height: auto;
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
     width: 100%;
 
+    &:focus {
+        outline: none; /* Remove o outline do card quando ele recebe foco */
+        box-shadow: none; /* Remove o box-shadow quando o card recebe foco */
+    }
+
+    &:active {
+        background-color: rgb(255, 255, 255); /* Mantém o fundo normal ao clicar */
+    }
+
     &:hover {
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
         transform: translateY(-3px);
-    }
-
-    @media (max-width: 480px) {
-        width: 100%;
     }
 `;
 
@@ -144,8 +149,8 @@ export const Description = styled.p`
 
 export const Buttons = styled.div`
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+    gap: 10px; /* Adiciona espaço entre os botões */
+    margin-top: 10px; /* Se necessário, você pode adicionar uma margem superior */
 `;
 
 export const BuyButton = styled.button`
@@ -205,4 +210,70 @@ export const CategoriaH2 = styled.h2`
     @media (max-width: 480px) {
         margin-left: 0; /* Ajuste o alinhamento para o celular */
     }
+`;
+
+export const ModalOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+`;
+
+
+export const ModalContent = styled.div`
+    background-color: white;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    `;
+    
+    export const SelectContainer = styled.div`
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0;
+        width: 100%;
+        
+        @media (max-width: 480px) {
+            display: flex;
+            flex-direction: row; /* Mantém os itens lado a lado */
+            justify-content: center; /* Centraliza na tela */
+            align-items: center;
+            color: #666;
+        }
+    `;
+
+export const SelectLabel = styled.label`
+    font-size: 14px;
+    text-align: left;
+    font-weight: bold;
+`;
+
+export const QuantitySelect = styled.select`
+    width: 80px;
+    padding: 6px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+`;
+
+export const SizeSelect = styled.select`
+    width: 80px;
+    padding: 6px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 `;

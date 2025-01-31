@@ -36,23 +36,26 @@ export const SearchBar = styled.div`
 `;
 
 export const ProductGrid = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    justify-content: center; /* Centraliza os itens na tela */
     margin: 0 auto 30px;
     width: 100%;
+    
+    /* Centraliza o conteúdo da grid */
+    justify-items: center; 
 
     @media (max-width: 1024px) {
-        justify-content: center;
+        grid-template-columns: repeat(3, 1fr);
     }
 
     @media (max-width: 768px) {
-        justify-content: center;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     @media (max-width: 480px) {
-        justify-content: center;
+        grid-template-columns: repeat(1, 1fr); /* Agora exibe 1 card por linha */
+        width: 100%;
     }
 `;
 
