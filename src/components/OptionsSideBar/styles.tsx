@@ -91,7 +91,7 @@ export const OptionItem = styled.div`
     }
 
     &:hover {
-        color: #212121;
+        color: rgb(0, 4, 255);
         scale: 1.1;
     }
 

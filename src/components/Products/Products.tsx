@@ -39,9 +39,11 @@ import {
     StoreLogo,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 
 const Products: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
+    const { addToCart } = useCart(); // Obtendo a função para adicionar ao carrinho
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [quantity, setQuantity] = useState(1);
@@ -209,12 +211,19 @@ const handleStoreClick = () => {
                                     <Description>{truncateText(product.description, 10)}</Description> {/* Limita a 10 palavras */}
                                     <Buttons>
                                         <BuyButton onClick={(e) => e.stopPropagation()}>Comprar</BuyButton>
-                                        <CartButton onClick={(e) => e.stopPropagation()}>
-                                            <img
-                                                src={cartIcon}
-                                                alt="Carrinho"
-                                                style={{ width: "20px", height: "20px" }}
-                                            />
+                                        <CartButton
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                addToCart({
+                                                    id: product.id,
+                                                    name: product.name,
+                                                    price: parseFloat(product.price.replace("R$ ", "").replace(".", "").replace(",", ".")), // Convertendo string para número
+                                                    quantity: 1,
+                                                    image: product.image,
+                                                });
+                                            }}
+                                        >
+                                            <img src={cartIcon} alt="Carrinho" style={{ width: "20px", height: "20px" }} />
                                         </CartButton>
                                     </Buttons>
                                 </Info>

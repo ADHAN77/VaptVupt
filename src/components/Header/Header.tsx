@@ -13,14 +13,16 @@ import Exit from "../../assets/icons/exit.png";
 import Settings from "../../assets/icons/opcoes.png";
 import logo from "../../assets/VaptVupt-Logo.png";
 import MobileSidebar from "../../components/MobileSidebar/MobileSideBar";
-import OptionsSidebar from "../../components/OptionsSideBar/OptionsSideBar"; // Importando o novo componente
+import OptionsSidebar from "../../components/OptionsSideBar/OptionsSideBar";
+import CartSidebar from "../../components/CartSidebar/CartSidebar"; // Importando a Sidebar do Carrinho
 
 const Header: React.FC = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para o menu de categorias
-    const [isOptionsOpen, setIsOptionsOpen] = useState(false); // Estado para o menu de opções
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+    const [isCartOpen, setIsCartOpen] = useState(false); // Estado do carrinho
 
     const handleExit = () => {
-        window.location.href = "/"; // Redireciona para a página de login
+        window.location.href = "/";
     };
 
     const handleMenuToggle = () => {
@@ -31,10 +33,13 @@ const Header: React.FC = () => {
         setIsOptionsOpen((prevState) => !prevState);
     };
 
+    const handleCartToggle = () => {
+        setIsCartOpen((prevState) => !prevState);
+    };
+
     return (
         <HeaderContainer>
             <div className="inner-container">
-                {/* Exit (Desktop) / Menu (Mobile) */}
                 <ExitIcon onClick={handleExit}>
                     <img src={Exit} alt="Sair" />
                 </ExitIcon>
@@ -42,12 +47,10 @@ const Header: React.FC = () => {
                     <img src={Menu} alt="Menu" />
                 </MenuIcon>
 
-                {/* Logo */}
                 <img src={logo} alt="Logo" style={{ height: "40px" }} />
 
-                {/* Ícones à direita: Carrinho e Configurações */}
                 <RightIcons>
-                    <CartIcon>
+                    <CartIcon onClick={handleCartToggle}>
                         <img src={Cart} alt="Carrinho" />
                     </CartIcon>
                     <SettingsIcon onClick={handleOptionsToggle}>
@@ -58,11 +61,12 @@ const Header: React.FC = () => {
 
             {/* Sidebars */}
             <MobileSidebar
-                isOpen={isMenuOpen}
-                toggleSidebar={handleMenuToggle}
-                onCategorySelect={(category) => console.log(category)} // Ação ao selecionar categoria
+            isOpen={isMenuOpen}
+            toggleSidebar={handleMenuToggle}
+            onCategorySelect={(category) => console.log(category)} // Corrigindo o erro
             />
             <OptionsSidebar isOpen={isOptionsOpen} toggleSidebar={handleOptionsToggle} />
+            <CartSidebar isOpen={isCartOpen} onClose={handleCartToggle} /> {/* Sidebar do carrinho */}
         </HeaderContainer>
     );
 };
