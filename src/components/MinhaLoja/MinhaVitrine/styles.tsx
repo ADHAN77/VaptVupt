@@ -7,8 +7,12 @@ export const Container = styled.div`
     background: #fff;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.459);
-`;
 
+    @media (max-width: 768px) {
+        max-width: 100%;
+        padding: 15px;
+    }
+`;
 export const Title = styled.h2`
     text-align: center;
     color: #333;
@@ -25,8 +29,12 @@ export const Logo = styled.img`
     height: 120px;
     border-radius: 50%;
     border: 2px solid rgb(0, 245, 192);
-`;
 
+    @media (max-width: 480px) {
+        width: 80px;
+        height: 80px;
+    }
+`;
 export const FileInput = styled.input`
     display: block;
     margin: 10px auto;
@@ -44,13 +52,15 @@ export const Label = styled.label`
     color: #666666;
 `;
 
+
 export const Input = styled.input`
     padding: 10px;
+    width: 100%; /* Ocupa toda a largura */
     border: 2px solid #ccc;
     border-radius: 5px;
-    font-size: 14px; /* Igual ao Label */
-    font-weight: bold; /* Igual ao Label */
-    color: #666666; /* Igual ao Label */
+    font-size: 14px;
+    font-weight: bold;
+    color: #666666;
     transition: border 0.3s;
 
     &:focus {
@@ -112,10 +122,13 @@ export const FormContainer = styled.div`
     flex-direction: column;
     gap: 10px;
     background: #fff;
-    color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.589);
     margin-bottom: 10px;
+
+    @media (max-width: 480px) {
+        padding: 15px;
+    }
 `;
 
