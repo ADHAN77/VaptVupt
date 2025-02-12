@@ -87,7 +87,13 @@ const Produtos: React.FC = () => {
                 {produtos.map(produto => (
                     <ProductCard key={produto.id} onClick={() => abrirModal(produto)}>
                         {produto.midia.length > 0 ? (
-                            <img src={URL.createObjectURL(produto.midia[0])} alt={produto.titulo} />
+                            produto.midia[0].type.startsWith("image") ? (
+                                <img src={URL.createObjectURL(produto.midia[0])} alt={produto.titulo} />
+                            ) : (
+                                <video width="100%" height="auto" controls>
+                                    <source src={URL.createObjectURL(produto.midia[0])} type={produto.midia[0].type} />
+                                </video>
+                            )
                         ) : (
                             <img src="https://via.placeholder.com/150" alt={produto.titulo} />
                         )}
@@ -115,9 +121,11 @@ const Produtos: React.FC = () => {
                                         {file.type.startsWith("image") ? (
                                             <img src={URL.createObjectURL(file)} alt={`preview-${index}`} />
                                         ) : (
-                                            <video controls>
+                                            <video width="100%" height="auto" controls>
                                                 <source src={URL.createObjectURL(file)} type={file.type} />
+                                                Seu navegador não suporta vídeos.
                                             </video>
+
                                         )}
                                         <RemoveMediaButton onClick={() => removerMidia(index)}>x</RemoveMediaButton>
                                     </MediaPreview>
