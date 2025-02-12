@@ -44,6 +44,10 @@ export const AddProductCard = styled(ProductCard)`
     font-size: 50px;
     color: #00f5c0;
     background: #ecf0f1;
+
+    @media (max-width: 667px) {
+        margin-bottom: 50px;
+    }
 `;
 
 export const ModalOverlay = styled.div`
@@ -65,8 +69,9 @@ export const ModalContent = styled.div`
     width: 500px;
     text-align: center;
 
-    @media (max-width: 768px) {
+    @media (max-width: 667px) {
         width: 400px;
+        margin-bottom: 50px;
     }
 `;
 
