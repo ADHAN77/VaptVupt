@@ -62,8 +62,12 @@ export const ModalContent = styled.div`
     background: white;
     padding: 20px;
     border-radius: 10px;
-    width: 300px;
+    width: 500px;
     text-align: center;
+
+    @media (max-width: 768px) {
+        width: 400px;
+    }
 `;
 
 export const CloseButton = styled.button`
@@ -129,4 +133,40 @@ export const Button = styled.button<{ deletar?: boolean }>`
     &:hover {
         background: ${({ deletar }) => (deletar ? "darkred" : "rgb(0, 245, 192)")};
     }
+`;
+
+export const MediaPreviewContainer = styled.div`
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+`;
+
+export const MediaPreview = styled.div`
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #f0f0f0;
+
+    img, video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+`;
+
+export const RemoveMediaButton = styled.button`
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
 `;

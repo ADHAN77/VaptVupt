@@ -11,12 +11,15 @@ import {
     Input,
     TextArea,
     Select,
-    Button
+    Button,
+    MediaPreviewContainer,
+    MediaPreview,
+    RemoveMediaButton
 } from "./styles";
 
 interface Produto {
     id: number;
-    foto: string;
+    midia: File[]; // Agora armazena um array de arquivos
     titulo: string;
     descricao: string;
     preco: string;
@@ -31,7 +34,7 @@ const Produtos: React.FC = () => {
     const categorias = ["Eletrônicos", "Roupas", "Computadores", "Calçados", "Bijuterias", "Eletrodomésticos", "Livros", "Esportes"];
 
     const abrirModal = (produto?: Produto) => {
-        setProdutoAtual(produto || { id: Date.now(), foto: "", titulo: "", descricao: "", preco: "", categoria: "" });
+        setProdutoAtual(produto || { id: Date.now(), midia: [], titulo: "", descricao: "", preco: "", categoria: "" });
         setModalAberto(true);
     };
 
@@ -58,13 +61,36 @@ const Produtos: React.FC = () => {
         }
     };
 
+    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const filesArray = Array.from(event.target.files); // Converte FileList para Array
+            if (produtoAtual) {
+                setProdutoAtual({
+                    ...produtoAtual,
+                    midia: [...(produtoAtual.midia || []), ...filesArray].slice(0, 5), // Limita a 5 arquivos
+                });
+            }
+        }
+    };
+
+    const removerMidia = (index: number) => {
+        if (produtoAtual) {
+            const novaMidia = produtoAtual.midia.filter((_, i) => i !== index);
+            setProdutoAtual({ ...produtoAtual, midia: novaMidia });
+        }
+    };
+
     return (
         <Container>
             <Title>Produtos</Title>
             <ProductGrid>
                 {produtos.map(produto => (
                     <ProductCard key={produto.id} onClick={() => abrirModal(produto)}>
-                        <img src={produto.foto || "https://via.placeholder.com/150"} alt={produto.titulo} />
+                        {produto.midia.length > 0 ? (
+                            <img src={URL.createObjectURL(produto.midia[0])} alt={produto.titulo} />
+                        ) : (
+                            <img src="https://via.placeholder.com/150" alt={produto.titulo} />
+                        )}
                         <h3>{produto.titulo}</h3>
                         <p>{produto.preco}</p>
                     </ProductCard>
@@ -75,16 +101,30 @@ const Produtos: React.FC = () => {
             </ProductGrid>
 
             {modalAberto && (
-                <ModalOverlay>
+                <ModalOverlay onClick={(e) => e.target === e.currentTarget && fecharModal()}>
                     <ModalContent>
-                        <CloseButton onClick={fecharModal}>×</CloseButton>
+                        <CloseButton onClick={fecharModal}></CloseButton>
                         <h2>{produtoAtual?.id ? "Editar Produto" : "Adicionar Produto"}</h2>
-                        <Input
-                            type="text"
-                            placeholder="Foto (URL)"
-                            value={produtoAtual?.foto || ""}
-                            onChange={(e) => setProdutoAtual({ ...produtoAtual!, foto: e.target.value })}
-                        />
+
+                        <input type="file" multiple accept="image/*,video/*" onChange={handleFileUpload} />
+
+                        {produtoAtual?.midia?.length ? (
+                            <MediaPreviewContainer>
+                                {produtoAtual.midia.map((file, index) => (
+                                    <MediaPreview key={index}>
+                                        {file.type.startsWith("image") ? (
+                                            <img src={URL.createObjectURL(file)} alt={`preview-${index}`} />
+                                        ) : (
+                                            <video controls>
+                                                <source src={URL.createObjectURL(file)} type={file.type} />
+                                            </video>
+                                        )}
+                                        <RemoveMediaButton onClick={() => removerMidia(index)}>x</RemoveMediaButton>
+                                    </MediaPreview>
+                                ))}
+                            </MediaPreviewContainer>
+                        ) : null}
+
                         <Input
                             type="text"
                             placeholder="Título"
@@ -115,10 +155,10 @@ const Produtos: React.FC = () => {
                         {produtoAtual?.id && <Button onClick={deletarProduto} deletar>Excluir</Button>}
                     </ModalContent>
                 </ModalOverlay>
-            )}
+        )}
+
         </Container>
     );
 };
 
 export default Produtos;
-

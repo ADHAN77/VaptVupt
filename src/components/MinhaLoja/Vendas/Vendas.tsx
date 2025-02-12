@@ -1,7 +1,17 @@
 import React from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
-import styled from "styled-components";
+import {
+    Container,
+    SummaryPanel,
+    SummaryItem,
+    ChartContainer,
+    SalesHistoryContainer,
+    SalesHistoryTitle,
+    SalesHistoryList,
+    SalesHistoryItem,
+} from "./styles";
 
+// Dados fictícios para o gráfico de vendas
 const data = [
     { day: "01", sales: 10 },
     { day: "02", sales: 15 },
@@ -13,33 +23,66 @@ const data = [
     { day: "08", sales: 18 },
     { day: "09", sales: 22 },
     { day: "10", sales: 19 },
-    // Adicione mais dias conforme necessário
 ];
 
-const ChartContainer = styled.div`
-    width: 100%;
-    height: 400px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-`;
+// Dados fictícios para o histórico de vendas
+const salesHistory = [
+    { id: 1, product: "Smartphone X", quantity: 2, date: "10/02/2025" },
+    { id: 2, product: "Notebook Pro", quantity: 1, date: "09/02/2025" },
+    { id: 3, product: "Tênis Esportivo", quantity: 3, date: "08/02/2025" },
+];
 
-const SalesChart: React.FC = () => {
+const SalesDashboard: React.FC = () => {
     return (
-        <ChartContainer>
-            <h3>Vendas no Mês</h3>
-            <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 10 }}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" />
-                    <YAxis />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="sales" stroke="rgb(0, 4, 255)" strokeWidth={2} />
-                </LineChart>
-            </ResponsiveContainer>
-        </ChartContainer>
+        <Container>
+            {/* Painel de Resumo */}
+            <SummaryPanel>
+                <SummaryItem>
+                    <strong>R$ 12.500</strong>
+                    <span>Total de Vendas</span>
+                    <span>📦 150 pedidos</span>
+                </SummaryItem>
+
+                <SummaryItem>
+                    <strong>R$ 3.200</strong>
+                    <span>Vendas do Mês</span>
+                    <span>📦 40 pedidos</span>
+                </SummaryItem>
+
+                <SummaryItem>
+                    <strong>R$ 890</strong>
+                    <span>Vendas da Semana</span>
+                    <span>📦 12 pedidos</span>
+                </SummaryItem>
+</SummaryPanel>
+
+            {/* Gráfico de Vendas */}
+            <ChartContainer>
+                <h3>Vendas no Mês</h3>
+                <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="day" />
+                        <YAxis />
+                        <Tooltip />
+                        <Line type="monotone" dataKey="sales" stroke="rgb(0, 245, 192)" strokeWidth={2} />
+                    </LineChart>
+                </ResponsiveContainer>
+            </ChartContainer>
+
+            {/* Histórico de Vendas */}
+            <SalesHistoryContainer>
+                <SalesHistoryTitle>Histórico de Vendas</SalesHistoryTitle>
+                <SalesHistoryList>
+                    {salesHistory.map((item) => (
+                        <SalesHistoryItem key={item.id}>
+                            {item.quantity}x {item.product} - {item.date}
+                        </SalesHistoryItem>
+                    ))}
+                </SalesHistoryList>
+            </SalesHistoryContainer>
+        </Container>
     );
 };
 
-export default SalesChart;
+export default SalesDashboard;
