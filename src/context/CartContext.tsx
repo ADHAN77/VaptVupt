@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 
 // Definição do tipo do produto no carrinho
 interface CartItem {
+    nome: ReactNode;
+    preco: ReactNode;
     id: number;
     name: string;
     price: number;

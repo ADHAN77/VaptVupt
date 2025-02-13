@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     padding: 20px;
+    
+    @media (max-width: 667px) {
+        margin-bottom: 50px;
+    }
 `;
 
 export const Title = styled.h2`
@@ -44,10 +48,6 @@ export const AddProductCard = styled(ProductCard)`
     font-size: 50px;
     color: #00f5c0;
     background: #ecf0f1;
-
-    @media (max-width: 667px) {
-        margin-bottom: 50px;
-    }
 `;
 
 export const ModalOverlay = styled.div`

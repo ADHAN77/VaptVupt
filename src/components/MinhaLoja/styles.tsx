@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
-
 export const Container = styled.div`
     display: flex;
     height: 100vh;
 
     @media (max-width: 768px) {
-        flex-direction: column; /* Empilha os elementos no mobile */
+        flex-direction: column;
         height: auto;
     }
 `;
@@ -17,16 +16,18 @@ export const Sidebar = styled.nav`
     display: flex;
     flex-direction: column;
     padding: 20px;
+    z-index: 9999; /* Garante que a sidebar fique sempre acima de tudo */
 
     @media (max-width: 768px) {
         width: 100%;
-        flex-direction: row; /* Itens lado a lado no mobile */
-        justify-content: space-around; /* Distribui os itens igualmente */
+        flex-direction: row;
+        justify-content: space-around;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
         padding: 10px;
+        box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2); /* Adiciona um leve sombreado para destaque */
     }
 `;
 
@@ -56,19 +57,18 @@ export const MenuItem = styled.button<{ active: boolean }>`
     }
 
     @media (max-width: 768px) {
-        flex-direction: column; /* Ícones e texto ficam empilhados */
+        flex-direction: column;
         text-align: center;
         font-size: 14px;
         margin-bottom: 0;
     }
 `;
 
-
 export const Content = styled.div`
     flex: 1;
     padding: 20px;
     background: #ecf0f1;
-    
+
     @media (max-width: 768px) {
         padding-bottom: 60px; /* Evita que o conteúdo fique atrás da barra inferior */
     }

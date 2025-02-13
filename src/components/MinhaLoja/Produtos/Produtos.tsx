@@ -83,28 +83,28 @@ const Produtos: React.FC = () => {
     return (
         <Container>
             <Title>Produtos</Title>
-            <ProductGrid>
-                {produtos.map(produto => (
-                    <ProductCard key={produto.id} onClick={() => abrirModal(produto)}>
-                        {produto.midia.length > 0 ? (
-                            produto.midia[0].type.startsWith("image") ? (
-                                <img src={URL.createObjectURL(produto.midia[0])} alt={produto.titulo} />
+                <ProductGrid>
+                    <AddProductCard onClick={() => abrirModal()}>
+                        <span>+</span>
+                    </AddProductCard>
+                    {produtos.map(produto => (
+                        <ProductCard key={produto.id} onClick={() => abrirModal(produto)}>
+                            {produto.midia.length > 0 ? (
+                                produto.midia[0].type.startsWith("image") ? (
+                                    <img src={URL.createObjectURL(produto.midia[0])} alt={produto.titulo} />
+                                ) : (
+                                    <video width="100%" height="auto" controls>
+                                        <source src={URL.createObjectURL(produto.midia[0])} type={produto.midia[0].type} />
+                                    </video>
+                                )
                             ) : (
-                                <video width="100%" height="auto" controls>
-                                    <source src={URL.createObjectURL(produto.midia[0])} type={produto.midia[0].type} />
-                                </video>
-                            )
-                        ) : (
-                            <img src="https://via.placeholder.com/150" alt={produto.titulo} />
-                        )}
-                        <h3>{produto.titulo}</h3>
-                        <p>{produto.preco}</p>
-                    </ProductCard>
-                ))}
-                <AddProductCard onClick={() => abrirModal()}>
-                    <span>+</span>
-                </AddProductCard>
-            </ProductGrid>
+                                <img src="https://via.placeholder.com/150" alt={produto.titulo} />
+                            )}
+                            <h3>{produto.titulo}</h3>
+                            <p>{produto.preco}</p>
+                        </ProductCard>
+                    ))}
+                </ProductGrid>
 
             {modalAberto && (
                 <ModalOverlay onClick={(e) => e.target === e.currentTarget && fecharModal()}>

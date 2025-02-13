@@ -51,10 +51,10 @@ const SalesDashboard: React.FC = () => {
 
                 <SummaryItem>
                     <strong>R$ 890</strong>
-                    <span>Vendas da Semana</span>
+                    <span>Vendas na Semana</span>
                     <span>📦 12 pedidos</span>
                 </SummaryItem>
-</SummaryPanel>
+            </SummaryPanel>
 
             {/* Gráfico de Vendas */}
             <ChartContainer>

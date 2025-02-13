@@ -1,10 +1,11 @@
     import styled from "styled-components";
 
+
     export const SidebarContainer = styled.div<{ isOpen: boolean }>`
     position: fixed;
     top: 0;
     right: 0;
-    width: 500px;
+    width: 700px;
     height: 100vh;
     background-color: rgb(0, 4, 255);
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
@@ -15,11 +16,12 @@
     flex-direction: column;
     padding: 20px;
     color: white;
+    overflow-x: hidden; /* Impede a barra de rolagem lateral */
 
     @media (max-width: 768px) {
-        width: 250px;
+        width: 330px;
     }
-    `;
+`;
 
     export const SidebarOverlay = styled.div`
     position: fixed;
@@ -53,16 +55,22 @@
     color: white;
     `;
 
-    export const CartList = styled.div`
+export const CartList = styled.div`
     flex: 1;
     overflow-y: auto;
     margin-top: 16px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    `;
+    max-width: 100%;
+    overflow-x: hidden; /* Garante que nada vaze horizontalmente */
 
-    export const CartItem = styled.div`
+    @media (max-width: 480px) {
+        overflow-x: hidden;
+    }
+`;
+
+export const CartItem = styled.div`
     display: flex;
     align-items: center;
     gap: 12px;
@@ -71,59 +79,84 @@
     font-size: 14px;
     position: relative;
     width: 100%;
-    `;
+    overflow-x: hidden;
 
-    export const ItemImage = styled.img`
+    @media (max-width: 480px) {
+        font-size: 12px;
+        gap: 6px;
+        padding: 6px 0;
+    }
+`;
+
+export const ItemImage = styled.img`
     width: 60px;
     height: 60px;
     border-radius: 8px;
     object-fit: cover;
-    `;
 
-    export const ItemInfo = styled.div`
+    @media (max-width: 480px) {
+        width: 45px;
+        height: 45px;
+    }
+`;
+
+export const ItemInfo = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex: 1; /* Faz ocupar o espaço entre a imagem e os controles */
+    flex: 1;
     color: white;
     font-size: 14px;
-    `;
+
+    @media (max-width: 480px) {
+        font-size: 12px;
+    }
+`;
 
     export const ProductDetails = styled.div`
     display: flex;
     flex-direction: column;
     `;
 
-    export const QuantityWrapper = styled.div`
+export const QuantityWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 12px;
-    `;
 
-    export const QuantityControl = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-right: 210px;
+    @media (max-width: 480px) {
+        gap: 6px;
+    }
+`;
 
-    button {
-        padding: 6px 12px;
-        background: rgba(255, 255, 255, 0.2);
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        color: white;
-        font-weight: bold;
-        transition: all 0.3s ease;
+export const QuantityControl = styled.div`
+display: flex;
+align-items: center;
+gap: 8px;
+margin-right: 210px;
 
-        &:hover {
+button {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+
+    &:hover {
         background: rgb(0, 245, 192);
         color: rgb(0, 4, 255);
-        }
     }
-    `;
 
-    export const RemoveButton = styled.button`
+    @media (max-width: 480px) {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+}
+`;
+
+export const RemoveButton = styled.button`
     position: absolute;
     top: 10px;
     right: 10px;
@@ -132,7 +165,7 @@
     color: red;
     font-size: 8px;
     cursor: pointer;
-    margin-top: 16px;
+
     img {
         width: 30px;
         height: 30px;
@@ -142,8 +175,16 @@
     &:hover {
         transform: scale(1.1);
     }
-    `;
 
+    @media (max-width: 480px) {
+        top: 5px;
+        right: 5px;
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+`;
     export const Footer = styled.div`
     border-top: 1px solid rgb(0, 245, 192);
     padding-top: 16px;
@@ -205,3 +246,44 @@
     color: rgba(255, 255, 255, 0.6);
     font-size: 14px;
     `;
+
+export const TitlePriceWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+    overflow-x: hidden; /* Impede estouros */
+
+    @media (max-width: 480px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+`;
+
+export const ProductTitle = styled.p`
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+
+    @media (max-width: 480px) {
+        font-size: 14px;
+        max-width: 120px;
+    }
+`;
+
+export const ProductPrice = styled.p`
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(0, 245, 192);
+    white-space: nowrap; /* Evita que o preço quebre linha */
+
+    @media (max-width: 480px) {
+        font-size: 12px;
+    }
+`;

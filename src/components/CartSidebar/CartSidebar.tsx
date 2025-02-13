@@ -15,6 +15,9 @@ import {
     CheckoutButton,
     EmptyCartMessage,
     QuantityWrapper,
+    ProductPrice,
+    TitlePriceWrapper,
+    ProductTitle,
 } from "./styles";
 import CloseIcon from "../../assets/icons/fechar.png";
 import LixeiraIcon from "../../assets/icons/lixeira.png";
@@ -44,8 +47,10 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                         <CartItem key={item.id}>
                             <ItemImage src={item.image} alt={item.name} />
                             <ItemInfo>
-                                <p>{item.name}</p>
-                                <p>R$ {item.price.toFixed(2)}</p>
+                                <TitlePriceWrapper>
+                                    <ProductTitle>{item.name}</ProductTitle>
+                                    <ProductPrice>R${item.price.toFixed(2)}</ProductPrice>
+                                </TitlePriceWrapper>
                             </ItemInfo>
                             <QuantityWrapper>
                                 <QuantityControl>
