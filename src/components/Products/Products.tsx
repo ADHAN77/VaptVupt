@@ -216,8 +216,8 @@ const handleStoreClick = () => {
                                                 e.stopPropagation();
                                                 addToCart({
                                                     id: product.id,
-                                                    name: product.name,
-                                                    price: parseFloat(product.price.replace("R$ ", "").replace(".", "").replace(",", ".")), // Convertendo string para número
+                                                    name: product.name, // Alterado para corresponder à interface
+                                                    price: parseFloat(product.price.replace("R$ ", "").replace(".", "").replace(",", ".")), // Alterado para 'preco'
                                                     quantity: 1,
                                                     image: product.image,
                                                 });
