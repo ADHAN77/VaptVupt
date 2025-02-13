@@ -110,7 +110,7 @@ export const ItemInfo = styled.div`
 
     @media (max-width: 480px) {
         font-size: 12px;
-    }
+    } 
 `;
 
     export const ProductDetails = styled.div`
