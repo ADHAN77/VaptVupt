@@ -57,13 +57,14 @@
 
 export const CartList = styled.div`
     flex: 1;
-    overflow-y: auto;
+    overflow-y: auto; /* Garante rolagem apenas no container */
+    overflow-x: hidden;
     margin-top: 16px;
     display: flex;
     flex-direction: column;
     gap: 15px;
     max-width: 100%;
-    overflow-x: hidden; /* Garante que nada vaze horizontalmente */
+    min-height: 0; /* Evita que os itens forcem um crescimento inesperado */
 
     @media (max-width: 480px) {
         overflow-x: hidden;
@@ -79,7 +80,8 @@ export const CartItem = styled.div`
     font-size: 14px;
     position: relative;
     width: 100%;
-    overflow-x: hidden;
+    flex-shrink: 0; /* Evita que os itens encolham e fiquem espremidos */
+    overflow: hidden;
 
     @media (max-width: 480px) {
         font-size: 12px;
@@ -87,7 +89,6 @@ export const CartItem = styled.div`
         padding: 6px 0;
     }
 `;
-
 export const ItemImage = styled.img`
     width: 60px;
     height: 60px;
@@ -269,14 +270,13 @@ export const ProductTitle = styled.p`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 80%;
+    max-width: 180px; /* Define um tamanho fixo para que o texto sempre tenha limite */
 
     @media (max-width: 480px) {
         font-size: 14px;
-        max-width: 120px;
+        max-width: 120px; /* Mantém o padrão no mobile */
     }
 `;
-
 export const ProductPrice = styled.p`
     font-size: 14px;
     font-weight: bold;
