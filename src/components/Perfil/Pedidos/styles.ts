@@ -34,16 +34,26 @@ export const Card = styled.div`
 `;
 
 export const Button = styled.button`
+    flex: 1;
     background-color: rgb(0, 4, 255);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
+    border: 1px solid rgb(0, 245, 192);
+    color: white;
+    padding: 10px 15px;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transform: all 1s esase;
+    transition-duration: .2s;
 
     &:hover {
+        transform: translateY(-5px);
         background-color: rgb(0, 245, 192);
+        color: rgb(0, 4, 255);
+        border: 1px solid rgb(0, 4, 255);
+    }
+
+    &:active {
+        transform: translateY(2px);
     }
 `;
 

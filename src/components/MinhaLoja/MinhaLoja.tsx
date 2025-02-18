@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Vitrine from "./MinhaVitrine/MinhaVitrine";
 import Produtos from "./Produtos/Produtos";
 import Vendas from "./Vendas/Vendas";
 import { Container, Sidebar, Content, MenuItem } from "./styles";
-import vitrine from "../../assets/icons/vitrine.png"
-import produtos from "../../assets/icons/produtos.png"
-import vendas from "../../assets/icons/vendas.png"
+import vitrine from "../../assets/icons/vitrine.png";
+import produtos from "../../assets/icons/produtos.png";
+import vendas from "../../assets/icons/vendas.png";
 
 const MinhaLoja: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<string>("Vitrine");
+    const [activeTab, setActiveTab] = useState<string>("Vendas");
+
+    // Sempre rola para o topo quando a aba mudar
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [activeTab]);
 
     const renderContent = () => {
         switch (activeTab) {
@@ -19,7 +24,7 @@ const MinhaLoja: React.FC = () => {
             case "Vendas":
                 return <Vendas />;
             default:
-                return <Vitrine />;
+                return <Vendas />;
         }
     };
 

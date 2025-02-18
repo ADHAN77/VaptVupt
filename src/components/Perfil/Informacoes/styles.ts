@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     padding: 20px;
+    margin-bottom: 50px;
 `;
 
 export const InfoContainer = styled.div`
@@ -65,31 +66,51 @@ export const Textarea = styled.textarea`
 `;
 
 export const EditButton = styled.button`
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    flex: 1;
     background-color: rgb(0, 4, 255);
+    border: 1px solid rgb(0, 245, 192);
     color: white;
-    padding: 10px 20px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s;
+    transform: all 1s esase;
+    transition-duration: .2s;
 
     &:hover {
+        transform: translateY(-5px);
         background-color: rgb(0, 245, 192);
+        color: rgb(0, 4, 255);
+        border: 1px solid rgb(0, 4, 255);
+    }
+
+    &:active {
+        transform: translateY(2px);
     }
 `;
 
 export const SaveButton = styled.button`
-    background-color: rgb(0, 245, 192);
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    flex: 1;
+    background-color: rgb(0, 4, 255);
+    border: 1px solid rgb(0, 245, 192);
     color: white;
-    padding: 10px 20px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s;
+    transform: all 1s esase;
+    transition-duration: .2s;
 
     &:hover {
-        background-color: rgb(0, 4, 255);
+        transform: translateY(-5px);
+        background-color: rgb(0, 245, 192);
+        color: rgb(0, 4, 255);
+        border: 1px solid rgb(0, 4, 255);
+    }
+
+    &:active {
+        transform: translateY(2px);
     }
 `;

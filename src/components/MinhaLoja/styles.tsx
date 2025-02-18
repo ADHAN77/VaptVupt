@@ -17,6 +17,7 @@ export const Sidebar = styled.nav`
     flex-direction: column;
     padding: 20px;
     z-index: 9999; /* Garante que a sidebar fique sempre acima de tudo */
+    height: 1080px;
 
     @media (max-width: 768px) {
         width: 100%;
@@ -28,6 +29,7 @@ export const Sidebar = styled.nav`
         right: 0;
         padding: 10px;
         box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2); /* Adiciona um leve sombreado para destaque */
+        height: 88px;
     }
 `;
 

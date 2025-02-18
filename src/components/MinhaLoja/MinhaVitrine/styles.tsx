@@ -124,8 +124,6 @@ export const FormContainer = styled.div`
     gap: 10px;
     background: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.589);
     margin-bottom: 10px;
 
     @media (max-width: 480px) {

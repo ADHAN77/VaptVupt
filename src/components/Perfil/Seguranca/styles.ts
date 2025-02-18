@@ -39,15 +39,24 @@ export const Container = styled.div`
     width: 100%;
     padding: 12px;
     font-size: 16px;
-    color: #fff;
-    background-color: #0c72fa;
-    border: none;
+    flex: 1;
+    background-color: rgb(0, 4, 255);
+    border: 1px solid rgb(0, 245, 192);
+    color: white;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transform: all 1s esase;
+    transition-duration: .2s;
 
     &:hover {
-        background-color: #0850a4;
+        transform: translateY(-5px);
+        background-color: rgb(0, 245, 192);
+        color: rgb(0, 4, 255);
+        border: 1px solid rgb(0, 4, 255);
+    }
+
+    &:active {
+        transform: translateY(2px);
     }
 `;
 
